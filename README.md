@@ -59,6 +59,18 @@ lsmod | grep bbr
 #打完最后一步，应看到 20480 或 16384 说明BBR 开启成功
 
 安装X-ui面板
+开启ROOT登录
+sudo -i
+echo root:你的密码 | chpasswd root
+sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+rm -rf /etc/ssh/sshd_config.d/* && rm -rf /etc/ssh/ssh_config.d/*
+/etc/init.d/ssh* restart
+
+
+
+
+
 
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 
